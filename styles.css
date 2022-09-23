@@ -14,7 +14,7 @@ a {
     color: white;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
     margin-top: 100px;
 }
@@ -26,10 +26,10 @@ img {
 
 .header {
     background: #1d1e20;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    align-items: center; 
     padding: 20px;
 }
 
@@ -51,7 +51,7 @@ img {
 .parent {
     display: flex;
     /* Ao usar display flex em elementos parent, os elementos child se alinham automaticamente como colunas ou linhas com largura e altura automáticas. */
-    justify-content: center;
+    justify-content: center; 
     /* A propriedade justify-content define como o navegador distribui o espaço dos items no centro da tela */
 }
 
@@ -68,3 +68,98 @@ img {
     /* A propriedade abreviada flex CSS define como um item flex aumentará ou diminuirá para caber no espaço disponível em seu contêiner flex. */
     margin: 10px;
 }
+
+/*CSS GRID 1*/
+.grid1 {
+    display: grid; /*This creates a grid layout and allows to use the grid properties*/
+    grid-template-columns: repeat(3, 1fr); /*This creates 3 columns with the same size*/
+    max-width: 800px; /*This means that the layout won't exceed the 800px*/
+    padding: 10px;
+    margin: 0 auto; /*The grid is centered*/
+    grid-gap: 20px; /*There is 20 px of space among the items inside of the grid*/
+}
+
+.grid1 > div:nth-child(n + 4) {
+    display: grid; /*This creates a grid layout on the first child element*/
+    grid-template-columns: 1fr 1fr; /*This creates 2 columns with the same size*/
+    grid-gap: 10px; /*The space among the items is 10px*/
+    align-items: center;  /*The text of the items is centered*/
+}
+
+.grid1 > div.anuncio {
+    grid-column: 1; /*There is one column inside the ad div*/
+    grid-row: 2 / 6; /*The item starts on row 2 and ends on row 6*/
+    display: block; /*The item is displayed as a block*/
+}
+
+@media (max-width: 600px) {
+    .grid1 {
+        grid-template-columns: 1fr 1fr; /*This creates 2 columns with the same size for screen sizes that are less than 600px*/
+    }
+    .grid1 > div:nth-child(n + 4) {
+        display: block;
+    }
+    .grid1 > div.anuncio {
+        grid-column: auto; /*This adjusts the column size to the screen size*/
+        grid-row: auto; /*This adjusts the row size to the screen size*/
+        order: -1; /*The ad will appear as the 1 item of the grid*/
+    }
+}
+
+/*CSS GRID 2*/
+
+.grid2 {
+    display: grid;
+    grid-template-columns: 1fr 200px; /*This creates 2 columns with the different sizes*/
+    grid-gap: 20px;
+    max-width: 800px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.sidebar > div {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+    .grid2 {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        display: flex;
+        overflow: scroll;
+    }
+    .sidebar > div {
+        flex: 1 0 200px;
+        margin: 0 10px;
+    }
+}
+
+/* Section GRID 3*/
+.grid3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*This creates 2 columns with same sizes*/
+    grid-gap: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 10px;
+}
+.grid3-item:nth-child(1) {
+    grid-row: 1 / 3;
+}
+.grid3-item {
+    display: grid;
+}
+.grid3-item img {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-self: end; /*The image will adjust to the end of the grid*/
+}
+.grid3-item p{
+ background: rgba(0, 0, 0, 0.6);
+ padding: 10px;
+ color: white;
+ grid-column: 1;
+ grid-row: 2;
+ align-self: end;   
+}   
